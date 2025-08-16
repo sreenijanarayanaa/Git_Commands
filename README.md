@@ -9,7 +9,7 @@ used for,
 - Tracking code changes
 - Tracking who made changes
 - Coding collaboration
-- 
+
 ## Key Git Concepts
 
 `Repository:` A folder where Git tracks your project and its history.
