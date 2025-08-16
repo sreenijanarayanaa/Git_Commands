@@ -504,7 +504,7 @@ Now, let’s say you've made a mistake and want to undo a commit or reset your b
 
 That’s where git reset comes into play.
 
-18. git reset
+## 18. git reset
 git reset is one of the most powerful commands for rolling back changes.
 
 It moves the current branch’s HEAD pointer to a previous commit—essentially rewinding your project to an earlier state.
