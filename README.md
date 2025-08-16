@@ -87,6 +87,8 @@ Git uses this information to track who made what change.
 Now let’s say you’re not starting a new project locally. But, joining an existing one hosted on a remote repository, like Github.
 
 ## 3. git clone
+`It creates a local copy of the remote repository`
+
 In that case, you use the git clone command followed by the repository’s URL:
 ```bash
 git clone <https://github.com/user/project.git>
@@ -106,6 +108,9 @@ In that case, Git has no idea where to push your changes.
 That’s where the git remote command comes in.
 
 ## 4. git remote
+
+`It is a reference to the repository hosted on the server`
+
 Using git remote, you can add, view, or remove remote connections. Remote repository can be hosted anywhere like GitHub, GitLab, Bitbucket, or even your own server.
 
 To check if your project already has any remotes configured, run:
@@ -116,8 +121,8 @@ This will list all the remote URLs your project can push to or pull from.
 
 Example Output:
 ```bash
-origin  https://github.com/algomaster-io/git-tutorial.git (fetch)
-origin  https://github.com/algomaster-io/git-tutorial.git (push)
+origin  https://github.com/xxx/git-tutorial.git (fetch)
+origin  https://github.com/xxx/git-tutorial.git (push)
 ```
 If you need to add a new remote, use:
 ```bash
