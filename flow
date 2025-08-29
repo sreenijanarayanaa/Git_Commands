@@ -1,0 +1,71 @@
+many developers use to push changes quickly from IDE terminal:
+
+git add . && git commit -m "your message here" && git push origin branch-name
+
+git add . && git commit -m "Fix: updated MyService logic" && git push origin main
+
+
+This does:
+
+git add . → stages all modified files
+
+git commit -m "..." → commits with your message
+
+git push origin main → pushes to remote
+
+
+-----------------------------------------------------------------------------------
+
+
+🔧 Step-by-step Fix Process
+1. Create a hotfix branch from the deployed branch
+
+Suppose your deployment is from main:
+
+git checkout main
+git pull origin main
+git checkout -b hotfix/fix-login-bug
+
+2. Fix the code
+
+Make changes in your IDE (fix the buggy file).
+
+3. Stage, commit, push the fix
+git add .
+git commit -m "Hotfix: fixed login bug after deployment"
+git push origin hotfix/fix-login-bug
+
+4. Deploy instantly (two options)
+
+If your team uses PR (Pull Request) workflow → create a PR from hotfix/fix-login-bug → merge → redeploy.
+
+If it’s urgent and you can push directly:
+
+git checkout main
+git merge hotfix/fix-login-bug
+git push origin main
+
+
+Then redeploy main.
+
+5. Tag the fix (optional but good practice)
+
+This helps track what got deployed:
+
+git tag -a v1.0.1 -m "Hotfix for login bug"
+git push origin v1.0.1
+
+
+✅ This way, the fix is applied instantly, and history is clean.
+
+👉 Quick hack (not recommended for big teams, but fast for small projects):
+If the bug is small and you are okay pushing directly to deployed branch:
+
+git checkout main
+# fix code
+git add .
+git commit -m "Quick fix after deployment"
+git push origin main
+
+
+Then redeploy.
