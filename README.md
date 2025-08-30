@@ -45,6 +45,174 @@ It is a hosting service for git repositories.
 GITHUB to GIT is the same as a photograph is to a person. It provides a graphical user interface to the command line tool GIT. GitHub is designed as a repository hosting service. It also gives a wide range of features such as collaborating on the project, resolving issues, source code management, and exchanging ideas with people around the world. Along with this, it provides the features of GIT too.
 
 
+## 🔹 Configuration
+`git config --global user.name "Your Name"
+git config --global user.email "your@email.com"`
+
+
+👉 Sets your username and email for commits.
+
+## 🔹 Repository Setup
+`git init`
+
+
+👉 Initialize a new local Git repo.
+
+`git clone <repo_url>`
+
+
+👉 Copy an existing remote repo to your machine.
+
+## 🔹 Basic Workflow
+`git status`
+
+
+👉 Shows changed files and current branch.
+
+`git add <file>
+git add .`
+
+
+👉 Stage changes (specific file or all files).
+
+`git commit -m "Commit message"`
+
+
+👉 Save changes to local repo with a message.
+
+`git log`
+
+
+👉 View commit history.
+
+## 🔹 Branching & Switching
+`git branch`
+
+
+👉 List branches.
+
+`git branch <branch_name>`
+
+
+👉 Create new branch.
+
+`git checkout <branch_name>`
+
+
+👉 Switch branch.
+
+`git checkout -b <branch_name>`
+
+
+👉 Create + switch to new branch.
+
+`git merge <branch_name>`
+
+
+👉 Merge a branch into current one.
+
+## 🔹 Remote Operations
+`git remote -v`
+
+
+👉 Show remote repo URLs.
+
+`git pull origin <branch_name>`
+
+
+👉 Fetch + merge latest code from remote branch.
+
+`git push origin <branch_name>`
+
+
+👉 Push local commits to remote branch.
+
+## 🔹 Undo / Fix
+`git reset <file>`
+
+
+👉 Unstage a file (keeps changes).
+
+`git checkout -- <file>`
+
+
+👉 Discard local changes in a file.
+
+`git revert <commit_id>`
+
+
+👉 Create new commit that undoes a previous commit.
+
+`git reset --hard <commit_id>`
+
+
+👉 Reset repo to a specific commit (⚠ destructive).
+
+## Daily workflow is usually:
+
+`git pull → git checkout -b feature → git add . → git commit -m "msg" → git push origin feature`
+
+## 🐞 Scenario: Fixing a Bug in main Branch
+
+Suppose your team found a bug in production and asked you to fix it.
+
+### 🔹 1. Get the Latest Code
+`git checkout main
+git pull origin main`
+
+👉 Switch to main branch and update it with latest code.
+
+### 🔹 2. Create a New Branch for the Fix
+`git checkout -b bugfix/login-issue`
+
+
+👉 Creates and switches to a branch named bugfix/login-issue.
+
+### 🔹 3. Make Changes & Check Status
+`git status`
+
+
+👉 See modified files.
+
+### 🔹 4. Stage & Commit Changes
+`git add .
+git commit -m "Fix login issue by handling null pointer"`
+
+
+👉 Adds changes and commits with a clear message.
+
+### 🔹 5. Push Your Branch to Remote
+`git push origin bugfix/login-issue`
+
+
+👉 Sends your new branch + commits to remote repo.
+
+### 🔹 6. Create Pull Request (PR)
+
+`👉 On GitHub/GitLab/Bitbucket, open a PR from bugfix/login-issue → main.
+👉 Team reviews your code.`
+
+### 🔹 7. Merge the Fix
+
+After approval:
+
+`git checkout main
+git pull origin main
+git merge bugfix/login-issue
+git push origin main`
+
+
+👉 Merges your fix branch into main and updates remote.
+
+### 🔹 8. Delete the Bugfix Branch (Cleanup)
+`git branch -d bugfix/login-issue
+git push origin --delete bugfix/login-issue`
+
+👉 Removes the branch locally and remotely.
+
+###  ✅ This is a full cycle:
+`pull latest → create branch → fix → commit → push → PR → merge → cleanup.`
+
 # 🚀 Getting Started with Git commands
 
 ### 1. Initialize a Git Repository
