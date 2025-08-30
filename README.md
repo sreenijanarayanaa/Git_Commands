@@ -157,8 +157,8 @@ git add .`
 Suppose your team found a bug in production and asked you to fix it.
 
 ### 🔹 1. Get the Latest Code
-`git checkout main
-git pull origin main`
+`git checkout main`
+`git pull origin main`
 
 👉 Switch to main branch and update it with latest code.
 
@@ -175,8 +175,8 @@ git pull origin main`
 👉 See modified files.
 
 ### 🔹 4. Stage & Commit Changes
-`git add .
-git commit -m "Fix login issue by handling null pointer"`
+`git add .`
+`git commit -m "Fix login issue by handling null pointer"`
 
 
 👉 Adds changes and commits with a clear message.
@@ -189,24 +189,24 @@ git commit -m "Fix login issue by handling null pointer"`
 
 ### 🔹 6. Create Pull Request (PR)
 
-`👉 On GitHub/GitLab/Bitbucket, open a PR from bugfix/login-issue → main.
-👉 Team reviews your code.`
+`👉 On GitHub/GitLab/Bitbucket, open a PR from bugfix/login-issue → main.`
+`👉 Team reviews your code.`
 
 ### 🔹 7. Merge the Fix
 
 After approval:
 
-`git checkout main
-git pull origin main
-git merge bugfix/login-issue
-git push origin main`
+`git checkout main`
+`git pull origin main`
+`git merge bugfix/login-issue`
+`git push origin main`
 
 
 👉 Merges your fix branch into main and updates remote.
 
 ### 🔹 8. Delete the Bugfix Branch (Cleanup)
-`git branch -d bugfix/login-issue
-git push origin --delete bugfix/login-issue`
+`git branch -d bugfix/login-issue`
+`git push origin --delete bugfix/login-issue`
 
 👉 Removes the branch locally and remotely.
 
