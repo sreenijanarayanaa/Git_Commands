@@ -1,0 +1,131 @@
+🌱 Imagine this scenario:
+
+You have two branches:
+
+main (the main project branch)
+
+feature (your branch where you’re adding a new feature)
+
+🔹 Situation without rebase
+
+Let’s say the history looks like this:
+
+A --- B --- C   (main)
+       \
+        D --- E   (feature)
+
+
+Commits A, B, C are in main.
+
+Commits D, E are in your feature branch.
+
+While you were working on feature, someone else added commit C to main.
+
+🔹 What git rebase main does
+
+If you run this command while on the feature branch:
+
+git checkout feature
+git rebase main
+
+
+Git will move commits D and E so that they come after C, like this:
+
+A --- B --- C   (main)
+                \
+                 D' --- E'   (feature rebased)
+
+
+Now it looks like you started your work from the latest main commit.
+
+🔑 Why this is useful
+
+History is clean and linear (no branching lines).
+
+It looks like you developed your feature on top of the newest main.
+
+When you later merge feature into main, it’s just a “fast-forward” (no merge commit).
+
+⚠️ Important note
+
+git rebase rewrites commit history (creates new commits D' and E' instead of the old ones).
+
+That’s why it’s safe to rebase your local branches but not good to rebase commits you already pushed to a shared remote repo (others might get confused).
+
+✅ In short:
+
+Merge = “combine branches, keep history as is (can look messy).”
+
+Rebase = “pretend I started from the latest main, replay my work on top (clean history).”
+
+⚠️ Why not rebase in a team?
+
+Because rebase rewrites history.
+If you already pushed commits to a remote branch that others have pulled, rebasing will “change the past” → and your teammates will end up with two different versions of the same commits.
+
+🔹 Example Scenario
+1. You and your teammate start from the same branch
+
+Branch: feature
+
+You both pull it at the same time.
+
+A --- B --- C   (feature on remote)
+
+2. You add a commit D and push
+A --- B --- C --- D   (feature: yours)
+
+
+Remote now has D. Your teammate pulls it.
+
+3. You rebase locally on main
+
+Let’s say main got new commits (X), so you do:
+
+git checkout feature
+git rebase main
+
+
+Your D commit is rewritten as D' (a new commit with a different ID).
+
+main:   A --- B --- X --- Y
+feature:                D'
+
+4. You push with --force
+
+To update remote with your rebased branch, you run:
+
+git push origin feature --force
+
+
+Now the remote looks like this:
+
+A --- B --- X --- Y --- D'   (feature on remote)
+
+5. Your teammate’s problem
+
+Your teammate already has commit D (old history).
+When they pull, Git sees:
+
+Remote branch has D'.
+
+Local branch has D.
+
+Git thinks these are two different commits (because rebase changed the hash).
+
+They end up with duplicated commits or nasty conflicts.
+They’ll have to do a manual fix (interactive rebase or reset) just to sync up with you.
+
+🔑 Key takeaway
+
+Rebase changes commit IDs (history).
+
+If that history is already shared, teammates’ histories no longer match.
+
+That’s why rebasing shared branches is dangerous.
+
+✅ Safe rule:
+
+Rebase before push → ✔ fine (history isn’t shared yet).
+
+Merge after push → ✔ safe (history is already public).
